@@ -59,6 +59,19 @@ stdenv.mkDerivation rec {
       url = "https://gitlab.gnome.org/GNOME/mutter/commit/850ef518795dcc20d3b9a4f661f70ff8d0ddacb2.patch";
       sha256 = "0cxdbrbcc8kfkvw7ryxjm2v1vk15jki7bawn128385r5hasabhxf";
     })
+    # fix animation related crashes: https://gitlab.gnome.org/GNOME/mutter/merge_requests/805
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/mutter/commit/63a0b702c94af013b94ad3f32a8c5ba86bf6dfba.patch";
+      sha256 = "13hvz3n275crvpankj1b47nds71c42nnbq1yx2xhhvk60qc72vh4";
+    })
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/mutter/commit/1e637bd7e1b2a4316d1cf6da80966d43819a10df.patch";
+      sha256 = "0jcx33j2sw7hva0gs0svqg69habxxmgdi0kcb07nqq2df6pb62qf";
+    })
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/mutter/commit/c9c53cb55fd6e782c50f36da1e2adbf28111a660.patch";
+      sha256 = "0iwjlbr8j0icigmilpghlkcyg4hll9dm0mcaj8lvi7qxrgjrmczr";
+    })
    # TODO: submit upstream
    ./0001-build-use-get_pkgconfig_variable-for-sysprof-dbusdir.patch
     (substituteAll {
