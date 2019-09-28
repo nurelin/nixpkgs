@@ -3,11 +3,11 @@
 
 stdenv.mkDerivation rec {
   pname = "gnome-weather";
-  version = "3.33.90";
+  version = "3.34.0";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-weather/${stdenv.lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
-    sha256 = "1rpzkjdsssi2dg5gvhrybgar5iagilcwc0fyi1g7vr99al3mb03f";
+    sha256 = "1g63xzs17i36if923b36k9fwbk0nqa5vz6zh1k6q2axrzhhpx1i4";
   };
 
   nativeBuildInputs = [ pkgconfig meson ninja wrapGAppsHook python3 ];
