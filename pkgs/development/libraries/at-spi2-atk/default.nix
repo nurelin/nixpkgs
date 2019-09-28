@@ -10,7 +10,6 @@
 , dbus
 , glib
 , libxml2
-, fixDarwinDylibNames
 
 , gnome3 # To pass updateScript
 }:
@@ -24,9 +23,7 @@ stdenv.mkDerivation rec {
     sha256 = "00250s72ii8w6lb6ww61v49y9k4cswfj0hhawqlram7bl6b7x6is";
   };
 
-  nativeBuildInputs = [ meson ninja pkgconfig ]
-    # Fixup rpaths because of meson, remove with meson-0.47
-    ++ stdenv.lib.optional stdenv.isDarwin fixDarwinDylibNames;
+  nativeBuildInputs = [ meson ninja pkgconfig ];
   buildInputs = [ at-spi2-core atk dbus glib libxml2 ];
 
   doCheck = false; # fails with "No test data file provided"
