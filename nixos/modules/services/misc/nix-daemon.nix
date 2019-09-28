@@ -199,7 +199,34 @@ in
       };
 
       buildMachines = mkOption {
-        type = types.listOf types.attrs;
+        type = types.listOf types.submodule {
+          options = {
+            hostName = mkOption {
+              type = types.string;
+            };
+            sshUser = mkOption {
+              type = types.string;
+            };
+            sshKey = mkOption {
+              type = types.string;
+            };
+            system = mkOption {
+              type = types.string;
+            };
+            maxJobs = mkOption {
+              type = types.int;
+            };
+            speedFactor = mkOption {
+              type = types.int;
+            };
+            supportedFeatures = mkOption {
+              type = types.listOf types.string;
+            };
+            mandatoryFeatures = mkOption {
+              type = types.listOf types.string;
+            };
+          };
+        };
         default = [];
         example = literalExample ''
           [ { hostName = "voila.labs.cs.uu.nl";
