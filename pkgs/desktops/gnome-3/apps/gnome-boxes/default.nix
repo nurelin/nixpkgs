@@ -6,8 +6,6 @@
 , libcap_ng, numactl, xen, libapparmor, json-glib, webkitgtk, vte
 }:
 
-# TODO: ovirt (optional)
-
 let
   version = "3.34.0";
 in stdenv.mkDerivation rec {
@@ -39,10 +37,6 @@ in stdenv.mkDerivation rec {
   preFixup = ''
     gappsWrapperArgs+=(--prefix PATH : "${stdenv.lib.makeBinPath [ mtools cdrkit libcdio ]}")
   '';
-
-  mesonFlags = [
-    "-Dovirt=false"
-  ];
 
   postPatch = ''
     chmod +x build-aux/post_install.py # patchShebangs requires executable file
