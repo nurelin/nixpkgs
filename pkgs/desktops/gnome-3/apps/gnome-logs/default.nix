@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, meson, ninja, pkgconfig, gnome3, glib, gtk3, wrapGAppsHook, desktop-file-utils
+{ stdenv, fetchurl, meson, ninja, pkgconfig, gnome3, glib, gtk3, wrapGAppsHook
 , gettext, itstool, libxml2, libxslt, docbook_xsl, docbook_xml_dtd_43, systemd, python3, gsettings-desktop-schemas }:
 
 stdenv.mkDerivation rec {
@@ -11,13 +11,12 @@ stdenv.mkDerivation rec {
   };
 
   mesonFlags = [
-    "-Dtests=true"
     "-Dman=true"
   ];
 
   nativeBuildInputs = [
     python3
-    meson ninja pkgconfig wrapGAppsHook gettext itstool desktop-file-utils
+    meson ninja pkgconfig wrapGAppsHook gettext itstool
     libxml2 libxslt docbook_xsl docbook_xml_dtd_43
   ];
   buildInputs = [ glib gtk3 systemd gsettings-desktop-schemas gnome3.adwaita-icon-theme ];
