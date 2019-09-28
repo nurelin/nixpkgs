@@ -18,7 +18,6 @@
 , adwaita-icon-theme
 , libgweather
 , gucharmap
-, gnome-settings-daemon
 , tracker
 , polkit
 , gnome3
@@ -56,7 +55,6 @@ in stdenv.mkDerivation rec {
     adwaita-icon-theme
     libgweather
     gucharmap
-    gnome-settings-daemon
     tracker
     polkit
     wirelesstools
