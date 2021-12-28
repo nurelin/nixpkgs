@@ -17,6 +17,7 @@
 , glib
 , networkmanager
 , libpulseaudio
+, pipewire
 }:
 
 stdenv.mkDerivation rec {
@@ -61,6 +62,7 @@ stdenv.mkDerivation rec {
     gst_all_1.gst-rtsp-server
     networkmanager
     libpulseaudio
+    pipewire # PipeWire provides a gstreamer plugin for using PipeWire for video
   ];
 
   preConfigure = ''
