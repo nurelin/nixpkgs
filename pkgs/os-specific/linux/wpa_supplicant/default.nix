@@ -29,6 +29,12 @@ stdenv.mkDerivation rec {
       url = "https://w1.fi/cgit/hostap/patch/?id=7800725afb27397f7d6033d4969e2aeb61af4737";
       sha256 = "0c1la7inf4m5y9gzdjjdnhpkx32pm8vi6m5knih8p77q4mbrdgg8";
     })
+    (fetchpatch {
+      # Fix a crash when a p2p device name is too long, remove >= 2.10
+      name = "RESEND-p2p-Limit-P2P_DEVICE-name-to-appropriate-ifname-size.diff";
+      url = "https://w1.fi/cgit/hostap/patch/?id=c0b88d12913900d8ead231bdd320dd40c2f76254";
+      sha256 = "sha256-uvdTTYPEvR2/53bFZEwBlOAnN0iOw4ySiXHgd1n9KSg=";
+    })
     # P2P: Fix copying of secondary device types for P2P group client (https://w1.fi/security/2020-2/)
     (fetchurl {
       name = "CVE-2021-0326.patch";
