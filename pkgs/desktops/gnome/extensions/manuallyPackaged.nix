@@ -2,6 +2,8 @@
 {
   "arcmenu@arcmenu.com" = callPackage ./arcmenu { };
   "clock-override@gnomeshell.kryogenix.org" = callPackage ./clock-override { };
+  "cosmic-dock@system76.com" = callPackage ./cosmic-dock { };
+  "cosmic-workspaces@system76.com" = callPackage ./cosmic-workspaces { };
   "dash-to-dock@micxgx.gmail.com" = callPackage ./dash-to-dock { };
   "drop-down-terminal@gs-extensions.zzrough.org" = callPackage ./drop-down-terminal { };
   "EasyScreenCast@iacopodeenosee.gmail.com" = callPackage ./EasyScreenCast { };
@@ -12,6 +14,7 @@
   "no-title-bar@jonaspoehler.de" = callPackage ./no-title-bar { };
   "paperwm@hedning:matrix.org" = callPackage ./paperwm { };
   "pidgin@muffinmad" = callPackage ./pidgin-im-integration { };
+  "pop-cosmic@system76.com" = callPackage ./pop-cosmic { };
   "pop-shell@system76.com" = callPackage ./pop-shell { };
   "sound-output-device-chooser@kgshank.net" = callPackage ./sound-output-device-chooser { };
   "system-monitor@paradoxxx.zero.gmail.com" = callPackage ./system-monitor { };
