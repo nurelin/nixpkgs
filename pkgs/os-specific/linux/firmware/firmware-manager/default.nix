@@ -22,7 +22,13 @@ rustPlatform.buildRustPackage rec {
 
   buildPhase = "make prefix='$(out)'";
 
-  installPhase = "make prefix='$(out)' install";
+  installPhase = ''
+    make prefix='$(out)' install
+
+    # pop-control-center needs a versioned shared object
+    cd $out/lib
+    ln -s libfirmware_manager.so libfirmware_manager.so.0
+  '';
 
   cargoSha256 = "sha256-BUo77ERHvuc8IkDdU3Z/gZZicNHT26IbAgEBnVM3O4U=";
 

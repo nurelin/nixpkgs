@@ -2,14 +2,14 @@
 
 stdenv.mkDerivation rec {
   pname = "gnome-shell-extension-pop-cosmic";
-  version = "unstable-2021-11-03";
+  version = "unstable-2022-08-27";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic";
-    # from branch `master_impish`
-    rev = "fbcaa2c071330a73e7b13b407e8b7fb0251eeace";
-    sha256 = "sha256-hgEbGG3ZQwSCeMvu8NiPA6SdO+Y2THD/nEoTzRRxdFs=";
+    # from branch `master_jammy`
+    rev = "182d3e768579857710107c5a65fae92b021abaa0";
+    sha256 = "sha256-s4QJzrWP1GVFYpYLddaF7X/xEF1ghnRGEKC9jlzD4BU=";
   };
 
   nativeBuildInputs = [ glib ];

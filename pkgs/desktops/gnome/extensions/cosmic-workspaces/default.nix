@@ -2,14 +2,14 @@
 
 stdenv.mkDerivation rec {
   pname = "gnome-shell-extension-cosmic-workspaces";
-  version = "unstable-2021-11-03";
+  version = "unstable-2022-08-27";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-workspaces";
-    # from branch `master_impish`
-    rev = "678b34bdcdec14471665b87092ca16f6857dac66";
-    sha256 = "sha256-RhdNG9FQRat4mBNfB5G1VflzzyixXfdOUg4BfmPceCQ=";
+    # from branch `master_jammy`
+    rev = "c5f2c5dced0adc4bb19719454fd90becd5c9e85a";
+    sha256 = "sha256-S4oXFkxfMOm69uvyZbGZxX544s6gX6+TCIX+WyC7ImU=";
   };
 
   nativeBuildInputs = [ glib ];

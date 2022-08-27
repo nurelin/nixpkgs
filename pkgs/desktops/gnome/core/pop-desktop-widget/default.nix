@@ -2,25 +2,32 @@
 
 stdenv.mkDerivation rec {
   pname = "pop-desktop-widget";
-  version = "unstable-2021-11-03";
+  version = "unstable-2022-08-27";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "desktop-widget";
-    rev = "1652fc89aa16dcf652422c4c3dfe1095e6286b7d";
-    sha256 = "sha256-QBQBtBSj+J87yAQhYMOrJTUCee3ebJhVc4Y/7EyBDes=";
+    # master_jammy branch
+    rev = "1619b241e23b16caabe97c15cf21713307c0a6f8";
+    sha256 = "sha256-7oCtQvCu/QZtePsdHB85kdisQzKFmsomUIiQ55qk/5E=";
   };
 
   cargoDeps = rustPlatform.fetchCargoTarball {
     inherit src;
     name = "${pname}-${version}";
-    hash = "sha256-/Sa/eImZZ+XeeCJueZOEhAmz0MA9yjW58jbFmXk4HL0=";
+    hash = "sha256-qhh8/38VQpxUXga1lmrjy07m0wlaOPQMccAKVMqCoj4=";
   };
 
   nativeBuildInputs = [ pkg-config glib rustPlatform.cargoSetupHook rustPlatform.rust.cargo ];
   buildInputs = [ gst_all_1.gstreamer gtk3 libhandy ];
 
+  buildFlags = [ "prefix=$(out)" "DESTDIR=" ];
   installFlags = [ "prefix=$(out)" "DESTDIR=" ];
+
+  postInstall = ''
+    cd $out/lib
+    ln -s libpop_desktop_widget.so libpop_desktop_widget.so.0
+  '';
 
   meta = with lib; {
     description = "GTK desktop settings widget for Pop!_OS";

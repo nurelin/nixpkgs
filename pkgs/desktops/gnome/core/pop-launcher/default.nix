@@ -1,28 +1,40 @@
-{ stdenv, fetchFromGitHub, rustPlatform, lib, pkg-config, openssl, gtk3 }:
+{ stdenv, fetchFromGitHub, rustPlatform, lib, pkg-config, openssl, gtk3, just, bash }:
 
 stdenv.mkDerivation rec {
   pname = "pop-launcher";
-  version = "1.0.3";
+  version = "1.2.1";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "launcher";
     rev = version;
-    sha256 = "sha256-eo/4ou9cW27IxS5C5l+KV6DU1gbe+Vbv9oVTTHPx0uI=";
+    sha256 = "sha256-BQAO9IodZxGgV8iBmUaOF0yDbAMVDFslKCqlh3pBnb0=";
   };
-
-  patches = [ ./custom-base-path.patch ];
 
   cargoDeps = rustPlatform.fetchCargoTarball {
     inherit src;
     name = "${pname}-${version}";
-    hash = "sha256-47s9tE2SImf8VhiKUXI4Kkk0ctamVktCKQsM8WpJOJM=";
+    hash = "sha256-cTvrq0fH057UIx/O9u8zHMsg+psMGg1q9klV5OMxtok=";
   };
 
-  nativeBuildInputs = [ pkg-config rustPlatform.cargoSetupHook rustPlatform.rust.cargo ];
+  nativeBuildInputs = [ pkg-config rustPlatform.cargoSetupHook rustPlatform.rust.cargo just ];
   buildInputs = [ openssl gtk3 ];
 
-  installFlags = [ "BASE_PATH=$(out)" ];
+  postPatch = ''
+    substituteInPlace ./justfile \
+      --replace '/usr/bin/env sh' ${bash}/bin/sh
+
+    substituteInPlace ./src/lib.rs \
+      --replace '/usr/lib/pop-launcher' "$out/lib/pop-launcher"
+  '';
+
+  installPhase = ''
+    runHook preInstall
+    just
+    just rootdir=$out base_dir=$out/ install
+    runHook postInstall
+  '';
+
 
   meta = with lib; {
     description = "Modular IPC-based desktop launcher service for Pop!_OS";

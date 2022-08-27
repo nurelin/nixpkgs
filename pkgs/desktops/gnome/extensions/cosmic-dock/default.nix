@@ -2,19 +2,24 @@
 
 stdenv.mkDerivation rec {
   pname = "gnome-shell-extension-cosmic-dock";
-  version = "unstable-2021-11-03";
+  version = "unstable-2022-08-27";
 
   src = fetchFromGitHub {
     owner = "pop-os";
     repo = "cosmic-dock";
-    # from branch `master_impish`
-    rev = "acb33c1c25866655e11191a781055ac272acfdc3";
-    sha256 = "sha256-MM5E8T6xWamfi7ABgTgG8WmuX0bvdmZHu8bmys1og2k=";
+    # from branch `master_jammy`
+    rev = "0544fb13f2fbfd4feff1289bac66ed07291981fb";
+    sha256 = "sha256-//a1qB2FrZ8P5Ix1c84cEGAuehdyO5WhlcHQCRW1T7M=";
   };
 
   nativeBuildInputs = [ glib sassc ];
 
-  makeFlags = [ "XDG_DATA_HOME=$(out)/share" ];
+  makeFlags = [ "XDG_DATA_HOME=$(out)/share" "DESTDIR=$(out)" ];
+
+  postPatch = ''
+    substituteInPlace ./Makefile \
+      --replace 'SHARE_PREFIX = $(DESTDIR)/usr/share' 'SHARE_PREFIX = $(DESTDIR)/share'
+  '';
 
   passthru = {
     extensionUuid = "cosmic-dock@system76.com";
